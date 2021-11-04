@@ -1,0 +1,143 @@
+* {
+    font-family: "微軟正黑體";
+    padding: 0;
+    margin: 0;
+}
+
+.flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.areaList {
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-bottom: 2px solid #777;
+    padding: 20px;
+}
+
+.areaBtn {
+    padding: 8px;
+    border: 1px solid #00A0E9;
+    margin: 5px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #00A0E9;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.activeArea {
+    background-color: #00A0E9;
+    color: #fff;
+}
+
+.attractions {
+    padding: 8px;
+    border-bottom: 2px dotted #ccc
+}
+
+.hotelslist {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.Hotels {
+    padding: 10px;
+    border: 1px solid #00cccc;
+    margin: 3px;
+    border-radius: 5px;
+    color: #005555;
+    font-weight: 700;
+}
+
+.hotelSelect {
+    font-size: 16px;
+    padding: 2px 8px;
+    cursor: pointer;
+}
+
+.planningCard {
+    width: 98%;
+    height: 98vh;
+    background-color: #ffe6bd;
+    position: fixed;
+    z-index: 5;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 8px solid #F49F16;
+    border-radius: 5px;
+    overflow-y: scroll;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.planningAttractions {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+    border-top: 3px solid #F49F16;
+    padding: 8px 0;
+}
+
+.partCard {
+    padding: 8px;
+    border-bottom: 1px dashed #777;
+}
+
+.YouBikeTitle {
+    font-weight: 900;
+    padding: 8px;
+    margin: 5px 0;
+    background-color: #F49F16;
+    width: 250px;
+    color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.traffic {
+    font-weight: 900;
+    padding: 5px 0;
+    font-size: 20px;
+}
+
+.markText {
+    font-weight: 900;
+    font-size: 26px;
+}
+
+.fa-window-close {
+    font-size: 36px;
+    position: absolute;
+    right: 10px;
+    color: #F49F16;
+    cursor: pointer;
+}
+
+.addr {
+    font-weight: 200;
+    color: #185b92;
+}
+
+.tips{
+    text-align: center;
+    padding: 10px;
+}
+
+@media screen and (max-width: 414px) {
+    .areaList {
+        padding: 10px;
+    }
+
+    .areaBtn {
+        font-size: 14px;
+    }
+}

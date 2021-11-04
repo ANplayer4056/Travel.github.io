@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Vue 高雄輕旅遊小幫手" />
+    <meta property="og:image" content="./image/travel.JPG" />
+    <meta property="og:description"
+        content="Vue 高雄輕旅遊小幫手 | 想來趟高雄小旅行? 平時很忙，根本沒時間規畫行程? 讓小幫手來幫你 ~ 快速找到當地的旅館及地區景點，還提供你交通訊息，還在等甚麼? 快來體驗吧!!" />
+    <meta name="description"
+        content="Vue 高雄輕旅遊小幫手 | 想來趟高雄小旅行? 平時很忙，根本沒時間規畫行程? 讓小幫手來幫你 ~ 快速找到當地的旅館及地區景點，還提供你交通訊息，還在等甚麼? 快來體驗吧!!" />
+    <meta name="author" content="Andy" />
+
+    <title>Vue 高雄輕旅遊小幫手</title>
+    <link rel="shortcut icon" href="./image/travel.ico"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://kit.fontawesome.com/265ac1e79e.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="flexbox areaList">
+            <div class="areaBtn" :class="{activeArea: selectArea === '全景點'}" @click="setArea('全景點')">全景點</div>
+            <div class="areaBtn" :class="{activeArea: selectArea === item }" v-for="item in areaList" :key="item"
+                @click="setArea(item)"> {{ item }} </div>
+        </div>
+
+        <div class="flexbox hotelslist" v-if="selectArea !== '全景點'">
+            <h3>旅館列表</h3>
+            <div v-for="item in renderHotels" :key="item.seq" class="Hotels">
+                <span>
+                    {{ item.旅宿名稱 }}( {{ item.電話 }} ) | {{ item.地址 }}
+                </span>
+                <button class="hotelSelect" @click="setHotel(item)">選擇</button>
+            </div>
+
+        </div>
+        <ul>
+            <li class="attractions" v-for="item in renderAttractions" :key="item.Id">{{ item.Name }} [ {{ item.Add }} ]
+            </li>
+        </ul>
+
+        <div class="planningCard" v-if="hasPlanning">
+            <i class="far fa-window-close" @click="reset"></i>
+            <h3 class="markText">{{ selectHotel.旅宿名稱 }}</h3>
+            <span>{{ selectHotel.電話 }}</span>
+            <p>{{ selectHotel.地址 }}</p>
+            <template v-if="selectHotel.bikes.length > 0">
+                <p class="YouBikeTitle">[ 200 公尺內 YouBike2.0 站點 ]</p>
+                <p v-for="bike in selectHotel.bikes" :key="bike.sno">
+                    <i class="fas fa-biking"></i>
+                    {{ bike.sna }} ➟ <span class="addr">{{ bike.ar }}</span>
+                </p>
+            </template>
+
+
+            <div class="planningAttractions">
+                <div class="partCard" v-for="item in nearAttractions" :key="item.Id">
+                    <span class="markText">{{ item.Name }}</span><span>[ 距離 : {{ item.betweens }} 公里]</span>
+                    <p>{{ item.Add }}</p>
+                    <div>
+                        <p class="traffic">交通方式</p>
+                        <p>{{ item.Travellinginfo }}</p>
+
+                        <template v-if="item.bikes.length > 0">
+                            <p class="YouBikeTitle">[ 1 公里內 YouBike2.0 站點 ]</p>
+                            <p v-for="bike in item.bikes" :key="bike.sno">
+                                <i class="fas fa-biking"></i>
+                                {{ bike.sna }} ➟ <span class="addr">{{ bike.ar }}</span>
+                            </p>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>
